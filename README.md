@@ -52,6 +52,13 @@ yarn start
   - [`<NativeBalance />`](#nativebalance-)
   - [`<Contract />`](#contract-)
 - [🧰 Ethereum Hooks](#-ethereum-hooks)
+  - [`useChain()`](#usechain)
+  - [`useERC20Balance()`](#useerc20balance)
+  - [`useERC20Transfers()`](#useerc20transfers)
+  - [`useInchDex()`](#useinchdex)
+  - [`useNativeBalance()`](#usenativebalance)
+  - [`useNFTBalance()`](#usenftbalance)
+  - [`useTokenPrice()`](#usetokenprice)
 
 
 # 🏗 Ethereum Components
