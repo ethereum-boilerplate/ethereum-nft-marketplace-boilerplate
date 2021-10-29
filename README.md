@@ -35,7 +35,26 @@ yarn install
 yarn start
 ```
 
-# 🏗 Web3 Components
+# 🧭 Table of contents
+
+- [`ethereum-boilerplate`](#ethereum-boilerplate)
+- [🚀 Quick Start](#-quick-start)
+- [🧭 Table of contents](#-table-of-contents)
+- [🏗 Ethereum Components](#-ethereum-components)
+  - [`<AddressInput />`](#addressinput-)
+  - [`<Chains />`](#chains-)
+  - [`<CoinPrice />`](#coinprice-)
+  - [`<ERC20Balance />`](#erc20balance-)
+  - [`<ERC20Transfers />`](#erc20transfers-)
+  - [`<DEX />`](#dex-)
+  - [`<Wallet />`](#wallet-)
+  - [`<Blockie />`](#blockie-)
+  - [`<NativeBalance />`](#nativebalance-)
+  - [`<Contract />`](#contract-)
+- [🧰 Ethereum Hooks](#-ethereum-hooks)
+
+
+# 🏗 Ethereum Components
 
 🛠 The ready for use react-components are located in `src/components`. They are designed to be used anywhere in your dApp. 
 
@@ -167,3 +186,19 @@ const [address, setAddress] = useState();
 
 
 ### `<Contract />`
+
+# 🧰 Ethereum Hooks
+
+### `useChain()` 
+
+### `useERC20Balance()` 
+
+### `useERC20Transfers()` 
+
+### `useInchDex()` 
+
+### `useNativeBalance()` 
+
+### `useNFTBalance()` 
+
+### `useTokenPrice()` 
