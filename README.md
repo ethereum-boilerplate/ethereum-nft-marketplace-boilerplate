@@ -287,7 +287,7 @@ const { fetchERC20Balance, assets } = useERC20Balance({ chain : "eth" });
 
 ### `useNativeBalance()` 
 
-💰 Gets native balance for a specific address. The `nativeName` from `useNativeBalance()` shows name of chain(Example: "BNB", "ETH", ...)
+💰 Gets native balance for a current user or specified address. The `nativeName` from `useNativeBalance()` shows name of chain(Example: "BNB", "ETH", ...)
 
 **Options**:
 - `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value: current chain.
@@ -309,7 +309,7 @@ function NativeBalance() {
 
 ### `useNativeTransactions()` 
 
-Gets the transactions from the current user or address. Returns an object with the number of transactions  and the array of native transactions 
+Gets the transactions from the current user or specified address. Returns an object with the number of transactions  and the array of native transactions 
 
 **Options**:
 - `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value: current chain.
