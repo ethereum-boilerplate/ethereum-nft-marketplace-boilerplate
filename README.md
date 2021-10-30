@@ -59,6 +59,7 @@ yarn start
   - [`useNFTBalance()`](#usenftbalance)
   - [`useNFTTransfers()`](#usenfttransfers)
   - [`useNFTTransfers()`](#usenfttransfers)
+  - [`useIPFS()`](#useipfs)
   - [`useChain()`](#usechain)
   - [`useTokenPrice()`](#usetokenprice)
   - [`useInchDex()`](#useinchdex)
@@ -228,3 +229,5 @@ Gets the transactions from the current user or address. Returns an object with t
 ### `useInchDex()` 
 
 ### `useTokenPrice()` 
+
+### `useIPFS()` 
