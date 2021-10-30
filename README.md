@@ -246,7 +246,7 @@ const ShowUniswapTotalSupplyLP = () => {
 **Example**:
 ```jsx
 const ShowUniswapObserveValues = () => {
-  const { runContractFunction, contractResponse, error, isLoading } = useWeb3Contract({
+  const { runContractFunction, contractResponse, error, isRunning, isLoading } = useWeb3Contract({
     abi: usdcEthPoolAbi,
     contractAddress: usdcEthPoolAddress,
     functionName: "observe",
@@ -270,16 +270,49 @@ const ShowUniswapObserveValues = () => {
 
 ### `useERC20Balance()` 
 
+💰 Gets all token balances of a current user or specified address. 
+
+**Options**:
+- `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value: current chain.
+- `address` (optional): A user address (i.e. 0x1a2b3x...). If specified, the user attached to the query is ignored and the address will be used instead.
+- `to_block` (optional): The block number on which the balances should be checked
+
+**Returns** (Object) : number of tokens and the array of token objects
+
+```jsx
+const { fetchERC20Balance, assets } = useERC20Balance({ chain : "eth" });
+```
+
 ### `useERC20Transfers()` 
 
 ### `useNativeBalance()` 
+
+💰 Gets native balance for a specific address. The `nativeName` from `useNativeBalance()` shows name of chain(Example: "BNB", "ETH", ...)
+
+**Options**:
+- `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value: current chain.
+- `address` (optional): A user address (i.e. 0x1a2b3x...). If specified, the user attached to the query is ignored and the address will be used instead.
+- `to_block` (optional): The block number on which the balances should be checked
+
+**Returns** (Object) : { inWei: balance in Wei , formatted: balance in Eth style }
+
+**Example**:
+```jsx
+
+function NativeBalance() {
+  const { getBalance, balance, nativeName, error, isLoading } = useNativeBalance({ chain : "eth" });
+  return (
+    <div>{`${balance.formatted} ${nativeName}`}</div>
+  );
+}
+```
 
 ### `useNativeTransactions()` 
 
 Gets the transactions from the current user or address. Returns an object with the number of transactions  and the array of native transactions 
 
 **Options**:
-- `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value Eth.
+- `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value: current chain.
 - `address` (optional): A user address (i.e. 0x1a2b3x...). If specified, the user attached to the query is ignored and the address will be used instead.
 - `from_date` (optional): The date from where to get the transactions (any format that is accepted by momentjs). Provide the param 'from_block' or 'from_date' If 'from_date' and 'from_block' are provided, 'from_block' will be used.
 - `to_date` (optional):  Get the transactions to this date (any format that is accepted by momentjs). Provide the param 'to_block' or 'to_date' If 'to_date' and 'to_block' are provided, 'to_block' will be used.
