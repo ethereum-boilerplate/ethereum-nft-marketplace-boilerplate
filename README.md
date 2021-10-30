@@ -217,7 +217,7 @@ Gets the transactions from the current user or address. Returns an object with t
 - `offset` (optional): Offset.
 - `limit` (optional): Limit.
 
-**Returns**: (Array) : native transactions
+**Returns** (Array) : native transactions
 
 ### `useNFTBalance()` 
 
