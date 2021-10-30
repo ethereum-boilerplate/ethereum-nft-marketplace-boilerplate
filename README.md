@@ -52,6 +52,8 @@ yarn start
   - [`<NativeBalance />`](#nativebalance-)
   - [`<Contract />`](#contract-)
 - [🧰 Ethereum Hooks](#-ethereum-hooks)
+  - [`useAPIContract()`](#useapicontract)  
+  - [`useWeb3Contract()`](#useweb3contract)  
   - [`useERC20Balance()`](#useerc20balance)
   - [`useERC20Transfers()`](#useerc20transfers)
   - [`useNativeBalance()`](#usenativebalance)
@@ -197,6 +199,74 @@ const [address, setAddress] = useState();
 ### `<Contract />`
 
 # 🧰 Ethereum Hooks
+
+### `useAPIContract()`
+
+📋 Runs a given function of a contract abi and returns readonly data. Uses Moralis Web3API (does not require an active web3 provider).
+
+**Options**:
+- `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value Eth.
+- `functionName` (required): The function name
+- `address` (required): A smart contract address
+- `abi` (required): contract or function ABI(should be provided as an array)
+
+**Example**:
+```jsx
+const ShowUniswapTotalSupplyLP = () => {
+  const { runContractFunction, contractResponse, error, isLoading } = useAPIContract({
+    abi: usdcEthPoolAbi,
+    address: usdcEthPoolAddress,
+    functionName: "totalSupply",
+  });
+
+  return (<div>
+    {error && <ErrorMessage error={error} />}
+    <button onClick={() => runContractFunction()} disabled={isLoading}>Fetch data</button>
+    {data && <pre>
+      {JSON.stringify(contractResponse),
+        null,
+        2,
+      )}
+    </pre>}
+  </div>)
+}
+```
+
+### `useWeb3Contract()`
+
+📋 Runs on-chain functions. Requires active Web3 Provider.
+
+**Options**:
+- `chain` (optional): The blockchain to get data from. Valid values are listed on the intro page in the Transactions and Balances section. Default value Eth.
+- `functionName` (required): The function name
+- `contractAddress` (required): A smart contract address
+- `abi` (required): contract or function ABI(should be provided as an array)
+- `params` (optional): Parameters needed for your specific function
+
+**Example**:
+```jsx
+const ShowUniswapObserveValues = () => {
+  const { runContractFunction, contractResponse, error, isLoading } = useWeb3Contract({
+    abi: usdcEthPoolAbi,
+    contractAddress: usdcEthPoolAddress,
+    functionName: "observe",
+    params: {
+      secondsAgos: [0, 10],
+    },
+  });
+
+  return (<div>
+    {error && <ErrorMessage error={error} />}
+    <button onClick={() => runContractFunction()} disabled={isLoading}>Fetch data</button>
+    {data && <pre>
+      {JSON.stringify(contractResponse),
+        null,
+        2,
+      )}
+    </pre>}
+  </div>)
+}
+```
 
 ### `useERC20Balance()` 
 
