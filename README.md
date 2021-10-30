@@ -52,13 +52,16 @@ yarn start
   - [`<NativeBalance />`](#nativebalance-)
   - [`<Contract />`](#contract-)
 - [🧰 Ethereum Hooks](#-ethereum-hooks)
-  - [`useChain()`](#usechain)
   - [`useERC20Balance()`](#useerc20balance)
   - [`useERC20Transfers()`](#useerc20transfers)
-  - [`useInchDex()`](#useinchdex)
   - [`useNativeBalance()`](#usenativebalance)
+  - [`useNativeTransactions()`](#usenativetransactions)
   - [`useNFTBalance()`](#usenftbalance)
+  - [`useNFTTransfers()`](#usenfttransfers)
+  - [`useNFTTransfers()`](#usenfttransfers)
+  - [`useChain()`](#usechain)
   - [`useTokenPrice()`](#usetokenprice)
+  - [`useInchDex()`](#useinchdex)
 
 
 # 🏗 Ethereum Components
@@ -196,16 +199,20 @@ const [address, setAddress] = useState();
 
 # 🧰 Ethereum Hooks
 
-### `useChain()` 
-
 ### `useERC20Balance()` 
 
 ### `useERC20Transfers()` 
 
-### `useInchDex()` 
-
 ### `useNativeBalance()` 
 
+### `useNativeTransactions()` 
+
 ### `useNFTBalance()` 
+
+### `useNFTTransfers()` 
+
+### `useChain()` 
+
+### `useInchDex()` 
 
 ### `useTokenPrice()` 
