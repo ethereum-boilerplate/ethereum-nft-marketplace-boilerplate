@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState} from "react";
 import { useMoralis } from "react-moralis";
 import {
   BrowserRouter as Router,
@@ -9,20 +9,15 @@ import {
 } from "react-router-dom";
 import Account from "components/Account";
 import Chains from "components/Chains";
-import TokenPrice from "components/TokenPrice";
-import ERC20Balance from "components/ERC20Balance";
-import ERC20Transfers from "components/ERC20Transfers";
-import InchDex from "components/InchDex";
 import NFTBalance from "components/NFTBalance";
-import Wallet from "components/Wallet";
-import { Menu, Layout, Tabs } from "antd";
+import NFTTokenIds from "components/NFTTokenIds";
+import { Menu, Layout} from "antd";
+import SearchCollections from "components/SearchCollections";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
 import "./style.css";
-import QuickStart from "components/QuickStart";
-import Contract from "components/Contract/Contract";
 import Text from "antd/lib/typography/Text";
-import Ramper from "components/Ramper";
+import NFTMarketTransactions from "components/NFTMarketTransactions";
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -59,6 +54,10 @@ const App = ({ isServerInfo }) => {
   const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
     useMoralis();
 
+
+
+  const [inputValue, setInputValue] = useState("explore");
+
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,6 +68,7 @@ const App = ({ isServerInfo }) => {
       <Router>
         <Header style={styles.header}>
           <Logo />
+          <SearchCollections setInputValue={setInputValue}/>
           <Menu
             theme="light"
             mode="horizontal"
@@ -76,89 +76,40 @@ const App = ({ isServerInfo }) => {
               display: "flex",
               fontSize: "17px",
               fontWeight: "500",
+              marginLeft: "50px",
               width: "100%",
-              justifyContent: "center",
             }}
-            defaultSelectedKeys={["quickstart"]}
+            defaultSelectedKeys={["nftMarket"]}
           >
-            <Menu.Item key="quickstart">
-              <NavLink to="/quickstart">🚀 Quick Start</NavLink>
-            </Menu.Item>
-            <Menu.Item key="wallet">
-              <NavLink to="/wallet">👛 Wallet</NavLink>
-            </Menu.Item>
-            <Menu.Item key="onramp">
-              <NavLink to="/onramp">💵 Fiat</NavLink>
-            </Menu.Item>
-            <Menu.Item key="dex">
-              <NavLink to="/1inch">🏦 Dex</NavLink>
-            </Menu.Item>
-            <Menu.Item key="balances">
-              <NavLink to="/erc20balance">💰 Balances</NavLink>
-            </Menu.Item>
-            <Menu.Item key="transfers">
-              <NavLink to="/erc20transfers">💸 Transfers</NavLink>
+            <Menu.Item key="nftMarket" onClick={() => setInputValue("explore")} >
+              <NavLink to="/NFTMarketPlace">🛒 Explore Market</NavLink>
             </Menu.Item>
             <Menu.Item key="nft">
-              <NavLink to="/nftBalance">🖼 NFTs</NavLink>
+              <NavLink to="/nftBalance">🖼 Your Collection</NavLink>
             </Menu.Item>
-            <Menu.Item key="contract">
-              <NavLink to="/contract">📄 Contract</NavLink>
+            <Menu.Item key="transactions">
+              <NavLink to="/Transactions">📑 Your Transactions</NavLink>
             </Menu.Item>
           </Menu>
           <div style={styles.headerRight}>
             <Chains />
-            <TokenPrice
-              address="0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
-              chain="eth"
-              image="https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
-              size="40px"
-            />
             <NativeBalance />
             <Account />
           </div>
         </Header>
         <div style={styles.content}>
           <Switch>
-            <Route path="/quickstart">
-              <QuickStart isServerInfo={isServerInfo} />
-            </Route>
-            <Route path="/wallet">
-              <Wallet />
-            </Route>
-            <Route path="/1inch">
-              <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
-                <Tabs.TabPane tab={<span>Ethereum</span>} key="1">
-                  <InchDex chain="eth" />
-                </Tabs.TabPane>
-                <Tabs.TabPane tab={<span>Binance Smart Chain</span>} key="2">
-                  <InchDex chain="bsc" />
-                </Tabs.TabPane>
-                <Tabs.TabPane tab={<span>Polygon</span>} key="3">
-                  <InchDex chain="polygon" />
-                </Tabs.TabPane>
-              </Tabs>
-            </Route>
-            <Route path="/erc20balance">
-              <ERC20Balance />
-            </Route>
-            <Route path="/onramp">
-              <Ramper />
-            </Route>
-            <Route path="/erc20transfers">
-              <ERC20Transfers />
-            </Route>
             <Route path="/nftBalance">
               <NFTBalance />
             </Route>
-            <Route path="/contract">
-              <Contract />
+            <Route path="/NFTMarketPlace">
+              <NFTTokenIds inputValue={inputValue} setInputValue={setInputValue}/>
             </Route>
-            <Route path="/nonauthenticated">
-              <>Please login using the "Authenticate" button</>
+            <Route path="/Transactions">
+              <NFTMarketTransactions />
             </Route>
           </Switch>
-          <Redirect to="/quickstart" />
+          <Redirect to="/NFTMarketPlace" />
         </div>
       </Router>
       <Footer style={{ textAlign: "center" }}>
@@ -222,6 +173,7 @@ export const Logo = () => (
         fill="#B7E803"
       />
     </svg>
+
   </div>
 );
 

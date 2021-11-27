@@ -5,7 +5,11 @@ import MoralisDappContext from "./context";
 function MoralisDappProvider({ children }) {
   const { web3, Moralis, user } = useMoralis();
   const [walletAddress, setWalletAddress] = useState();
-  const [chainId, setChainId] = useState();
+  const [chainId, setChainId] = useState();       
+  const [contractABI, setContractABI] = useState();
+  const [marketAddress, setMarketAddress] = useState();
+
+
   useEffect(() => {
     Moralis.onChainChanged(function (chain) {
       setChainId(chain);
@@ -25,7 +29,7 @@ function MoralisDappProvider({ children }) {
   );
 
   return (
-    <MoralisDappContext.Provider value={{ walletAddress, chainId }}>
+    <MoralisDappContext.Provider value={{ walletAddress, chainId, marketAddress, setMarketAddress, contractABI, setContractABI }}>
       {children}
     </MoralisDappContext.Provider>
   );
