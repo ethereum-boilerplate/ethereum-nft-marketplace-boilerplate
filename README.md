@@ -36,7 +36,18 @@ const [contractABI, setContractABI] = useState();
 const [marketAddress, setMarketAddress] = useState();
 ```
 
-🔃 Sync the createMarketItem event from your marketplace contract with your Morlalis, making the tableName "MarketItems"
+🔃 Sync the `MarketItemCreated` event from your `/src/contracts/marketplaceBoilerplate.sol` contract with your Moralis Server, making the tableName `MarketItems`
+```jsx
+event MarketItemCreated (
+  uint indexed itemId,
+  address indexed nftContract,
+  uint256 indexed tokenId,
+  address seller,
+  address owner,
+  uint256 price,
+  bool sold
+);
+```
 
 
 🚴‍♂️ Run your App:
