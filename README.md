@@ -1,4 +1,4 @@
-# `ethereum-boilerplate`
+# `ethereum-boilerplate-NFT-Marketplace`
 
 > React components and hooks for fast building dApps without running own backend
 
@@ -34,10 +34,11 @@ REACT_APP_MORALIS_SERVER_URL = https://xxxxxx.grandmoralis.com:2053/server
 ```jsx
 const [contractABI, setContractABI] = useState();
 const [marketAddress, setMarketAddress] = useState();
-
-
-
 ```
+
+🔃 Sync the createMarketItem event from your marketplace contract with your Morlalis, making the tableName "MarketItems"
+
+
 🚴‍♂️ Run your App:
 ```sh
 yarn start
