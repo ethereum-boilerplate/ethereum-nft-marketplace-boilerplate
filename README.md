@@ -1,9 +1,8 @@
 # `ethereum-boilerplate-NFT-Marketplace`
 
-> React components and hooks for fast building dApps without running own backend
-
 This Project is a fork of Ethereum Boilerplate and demostrates how you can build your own NFT Marketplace. This project of course work on any EVM-compatible blockchain such as Polygon, Avalanche, Binance Smart Chain and other such chains.
 
+![Preview](preview.gif)
 
 # ⭐️ `Star us`
 If this boilerplate helps you build Ethereum dapps faster - please star this project, every star makes us very happy!
