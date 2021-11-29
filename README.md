@@ -9,13 +9,13 @@ If this boilerplate helps you build Ethereum dapps faster - please star this pro
 
 # 🚀 Quick Start
 
-📄 Clone or fork `ethereum-boilerplate`:
+📄 Clone or fork `ethereum-nft-marketplace-boilerplate`:
 ```sh
-git clone https://github.com/ethereum-boilerplate/ethereum-boilerplate.git
+git clone https://github.com/ethereum-boilerplate/ethereum-nft-marketplace-boilerplate.git
 ```
 💿 Install all dependencies:
 ```sh
-cd ethereum-boilerplate
+cd ethereum-nft-marketplace-boilerplate
 yarn install 
 ```
 ✏ Rename `.env.example` to `.env` in the main folder and provide your `appId` and `serverUrl` from Moralis ([How to start Moralis Server](https://docs.moralis.io/moralis-server/getting-started/create-a-moralis-server)) 
