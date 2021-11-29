@@ -26,13 +26,13 @@ REACT_APP_MORALIS_APPLICATION_ID = xxxxxxxxxxxx
 REACT_APP_MORALIS_SERVER_URL = https://xxxxxx.grandmoralis.com:2053/server
 ```
 
-🔎 Locate the MoralisDappProvider in `src/providers/MoralisDappProvider/MoralisDappProvider.js` and paste the marketplace smart contract address and ABI
+🔎 Locate the MoralisDappProvider in `src/providers/MoralisDappProvider/MoralisDappProvider.js` and paste the deployed marketplace smart contract address and ABI
 ```jsx
 const [contractABI, setContractABI] = useState();
 const [marketAddress, setMarketAddress] = useState();
 ```
 
-🔃 Sync the `MarketItemCreated` event from your `/src/contracts/marketplaceBoilerplate.sol` contract with your Moralis Server, making the tableName `MarketItems`
+🔃 Sync the `MarketItemCreated` event `/src/contracts/marketplaceBoilerplate.sol` contract with your Moralis Server, making the tableName `MarketItems`
 ```jsx
 event MarketItemCreated (
   uint indexed itemId,
