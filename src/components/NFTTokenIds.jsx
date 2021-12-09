@@ -172,6 +172,15 @@ function NFTTokenIds({ inputValue, setInputValue }) {
   return (
     <>
       <div>
+      {contractABIJson.noContractDeployed &&
+        <>
+          <Alert
+            message="No Smart Contract Details Provided. Please deploy smart contract and provide address + ABI in the MoralisDappProvider.js file"
+            type="error"
+          />
+          <div style={{marginBottom: "10px"}}></div>
+        </>
+      }
         {inputValue !== "explore" && totalNFTs !== undefined && (
           <div style={styles.banner}>
             <Image
