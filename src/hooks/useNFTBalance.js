@@ -14,27 +14,32 @@ export const useNFTBalance = (options) => {
     error,
     isLoading,
   } = useMoralisWeb3ApiCall(account.getNFTs, { chain: chainId, ...options });
+  const [fetchSuccess, setFetchSuccess] = useState(true);
 
   useEffect(async () => {
     if (data?.result) {
       const NFTs = data.result;
+      setFetchSuccess(true);
       for (let NFT of NFTs) {
         if (NFT?.metadata) {
           NFT.metadata = JSON.parse(NFT.metadata);
-          // metadata is a string type
           NFT.image = resolveLink(NFT.metadata?.image);
-        }else if (NFT?.token_uri){
-          await fetch(NFT.token_uri)
-          .then(response => response.json())
-          .then(data => {
-            NFT.image = resolveLink(data.image);
-          });
+        } else if (NFT?.token_uri) {
+          try {
+            await fetch(NFT.token_uri)
+              .then((response) => response.json())
+              .then((data) => {
+                NFT.image = resolveLink(data.image);
+              });
+          } catch (error) {
+            setFetchSuccess(false);
+          }
         }
       }
       setNFTBalance(NFTs);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  return { getNFTBalance, NFTBalance, error, isLoading };
+  return { getNFTBalance, NFTBalance, fetchSuccess, error, isLoading };
 };
