@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMoralis } from "react-moralis";
-import { Card, Image, Tooltip, Modal, Input, Spin, Alert } from "antd";
+import { Card, Image, Tooltip, Modal, Input, Alert, Spin } from "antd";
 import { useNFTBalance } from "hooks/useNFTBalance";
 import { FileSearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
@@ -21,7 +21,7 @@ const styles = {
 };
 
 function NFTBalance() {
-  const { NFTBalance } = useNFTBalance();
+  const { NFTBalance, fetchSuccess } = useNFTBalance();
   const { chainId, marketAddress, contractABI } = useMoralisDapp();
   const { Moralis } = useMoralis();
   const [visible, setVisibility] = useState(false);
@@ -31,29 +31,27 @@ function NFTBalance() {
   const contractProcessor = useWeb3ExecuteFunction();
   const contractABIJson = JSON.parse(contractABI);
   const listItemFunction = "createMarketItem";
-  const ItemImage = Moralis.Object.extend("ItemImages"); 
+  const ItemImage = Moralis.Object.extend("ItemImages");
 
-
-
-    async function list(nft, listPrice) {
-      setLoading(true);
-      const p = listPrice * ("1e" + 18);
-      const ops = {
+  async function list(nft, listPrice) {
+    setLoading(true);
+    const p = listPrice * ("1e" + 18);
+    const ops = {
       contractAddress: marketAddress,
       functionName: listItemFunction,
       abi: contractABIJson,
-      params : {
+      params: {
         nftContract: nft.token_address,
         tokenId: nft.token_id,
-        price: String(p)
-      }       
+        price: String(p),
+      },
     };
-    
+
     await contractProcessor.fetch({
       params: ops,
       onSuccess: () => {
         console.log("success");
-        setLoading(false); 
+        setLoading(false);
         setVisibility(false);
         addItemImage();
         succList();
@@ -61,41 +59,38 @@ function NFTBalance() {
       onError: (error) => {
         setLoading(false);
         failList();
-      }
-    })
-  } 
-
-
+      },
+    });
+  }
 
   const handleSellClick = (nft) => {
     setNftToSend(nft);
     setVisibility(true);
   };
-  
+
   function succList() {
     let secondsToGo = 5;
     const modal = Modal.success({
-      title: 'Success!',
+      title: "Success!",
       content: `Your NFT was listed on the marketplace`,
     });
     setTimeout(() => {
       modal.destroy();
-    }, secondsToGo * 1000);     
+    }, secondsToGo * 1000);
   }
 
-  
   function failList() {
     let secondsToGo = 5;
     const modal = Modal.error({
-      title: 'Error!',
+      title: "Error!",
       content: `There was a problem listing your NFT`,
     });
     setTimeout(() => {
       modal.destroy();
-    }, secondsToGo * 1000);     
+    }, secondsToGo * 1000);
   }
 
-  function addItemImage(){
+  function addItemImage() {
     const itemImage = new ItemImage();
 
     itemImage.set("image", nftToSend.image);
@@ -106,20 +101,27 @@ function NFTBalance() {
     itemImage.save();
   }
 
-
-
   return (
     <>
       <div style={styles.NFTs}>
-      {contractABIJson.noContractDeployed &&
-        <>
-          <Alert
-            message="No Smart Contract Details Provided. Please deploy smart contract and provide address + ABI in the MoralisDappProvider.js file"
-            type="error"
-          />
-          <div style={{marginBottom: "10px"}}></div>
-        </>
-      }
+        {contractABIJson.noContractDeployed && (
+          <>
+            <Alert
+              message="No Smart Contract Details Provided. Please deploy smart contract and provide address + ABI in the MoralisDappProvider.js file"
+              type="error"
+            />
+            <div style={{ marginBottom: "10px" }}></div>
+          </>
+        )}
+        {!fetchSuccess && (
+          <>
+            <Alert
+              message="Unable to fetch all NFT metadata... We are searching for a solution, please try again later!"
+              type="warning"
+            />
+            <div style={{ marginBottom: "10px" }}></div>
+          </>
+        )}
         {NFTBalance &&
           NFTBalance.map((nft, index) => (
             <Card
@@ -128,7 +130,10 @@ function NFTBalance() {
                 <Tooltip title="View On Blockexplorer">
                   <FileSearchOutlined
                     onClick={() =>
-                      window.open(`${getExplorer(chainId)}address/${nft.token_address}`, "_blank")
+                      window.open(
+                        `${getExplorer(chainId)}address/${nft.token_address}`,
+                        "_blank"
+                      )
                     }
                   />
                 </Tooltip>,
@@ -152,7 +157,7 @@ function NFTBalance() {
             </Card>
           ))}
       </div>
-      
+
       <Modal
         title={`List ${nftToSend?.name} #${nftToSend?.token_id} For Sale`}
         visible={visible}
@@ -161,11 +166,22 @@ function NFTBalance() {
         okText="List"
       >
         <Spin spinning={loading}>
-        <img src={`${nftToSend?.image}`} style={{width:"250px", margin:"auto", borderRadius:"10px", marginBottom:"15px"}} />
-        <Input autoFocus placeholder="Listing Price in MATIC" onChange={(e) => setPrice(e.target.value)} />
+          <img
+            src={`${nftToSend?.image}`}
+            style={{
+              width: "250px",
+              margin: "auto",
+              borderRadius: "10px",
+              marginBottom: "15px",
+            }}
+          />
+          <Input
+            autoFocus
+            placeholder="Listing Price in MATIC"
+            onChange={(e) => setPrice(e.target.value)}
+          />
         </Spin>
       </Modal>
-      
     </>
   );
 }
