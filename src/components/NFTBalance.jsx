@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMoralis } from "react-moralis";
-import { Card, Image, Tooltip, Modal, Input, Alert, Spin } from "antd";
+import { Card, Image, Tooltip, Modal, Input, Alert, Spin, Button } from "antd";
 import { useNFTBalance } from "hooks/useNFTBalance";
 import { FileSearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
@@ -63,6 +63,34 @@ function NFTBalance() {
     });
   }
 
+
+  async function approveAll(nft) {
+    setLoading(true);  
+    const ops = {
+      contractAddress: nft.token_address,
+      functionName: "setApprovalForAll",
+      abi: [{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"}],
+      params: {
+        operator: marketAddress,
+        approved: true
+      },
+    };
+
+    await contractProcessor.fetch({
+      params: ops,
+      onSuccess: () => {
+        console.log("Approval Received");
+        setLoading(false);
+        setVisibility(false);
+        succApprove();
+      },
+      onError: (error) => {
+        setLoading(false);
+        failApprove();
+      },
+    });
+  }
+
   const handleSellClick = (nft) => {
     setNftToSend(nft);
     setVisibility(true);
@@ -79,11 +107,33 @@ function NFTBalance() {
     }, secondsToGo * 1000);
   }
 
+  function succApprove() {
+    let secondsToGo = 5;
+    const modal = Modal.success({
+      title: "Success!",
+      content: `Approval is now set, you may list your NFT`,
+    });
+    setTimeout(() => {
+      modal.destroy();
+    }, secondsToGo * 1000);
+  }
+
   function failList() {
     let secondsToGo = 5;
     const modal = Modal.error({
       title: "Error!",
       content: `There was a problem listing your NFT`,
+    });
+    setTimeout(() => {
+      modal.destroy();
+    }, secondsToGo * 1000);
+  }
+
+  function failApprove() {
+    let secondsToGo = 5;
+    const modal = Modal.error({
+      title: "Error!",
+      content: `There was a problem with setting approval`,
     });
     setTimeout(() => {
       modal.destroy();
@@ -164,6 +214,17 @@ function NFTBalance() {
         onCancel={() => setVisibility(false)}
         onOk={() => list(nftToSend, price)}
         okText="List"
+        footer={[
+          <Button onClick={() => setVisibility(false)}>
+            Cancel
+          </Button>,
+          <Button onClick={() => approveAll(nftToSend)} type="primary">
+            Approve
+          </Button>,
+          <Button onClick={() => list(nftToSend, price)} type="primary">
+            List
+          </Button>
+        ]}
       >
         <Spin spinning={loading}>
           <img
