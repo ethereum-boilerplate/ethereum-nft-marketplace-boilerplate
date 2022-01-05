@@ -14,6 +14,20 @@ export const networkCollections = {
       addrs: "0xCA34404dD8Bd6537BE76F3A51B379F8949bD7973",
     },
   ],
+  "0x4": [
+    //Add Your Collections here
+    {
+      image:
+        "https://lh3.googleusercontent.com/N5J4_6c0CKj2jsIH9GttqLenFS6LiPWy98Soj2XjcwiN1CME9wPHhFCp0IGNof_zmzEMH0Hqq3p0fCLHJiStaC6GyAW5G_fRBPk5iA=s0",
+      name: "DinoWorld",
+      addrs: "0xcc14dd8e6673fee203366115d3f9240b079a4930",
+    },
+    {
+      image:"https://lh3.googleusercontent.com/174vUPGhJXJZHPLDI4O4rBJWEzmq8JmKYAlyff0gPTpcxXLHRn1Oolapx-QghcHgkZqafr70IbeRDBq0uxfw83tYeQ4ktfDYup6V=s0",
+      name: "Wild Horses NFT",
+      addrs: "0xf7c68b84a8ad29a61af42fc31cef1964dd80f8ea",
+    },
+  ],
 
   "0x1": [
     {
