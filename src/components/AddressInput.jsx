@@ -8,10 +8,6 @@ function AddressInput(props) {
   const [address, setAddress] = useState("");
   const [validatedAddress, setValidatedAddress] = useState("");
 
-  /* e slint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
-    if (validatedAddress) props.onChange(address);
-  }, [address]);*/
   useEffect(() => {
     function fetchBusinesses() {
       if (validatedAddress) props.onChange(address);

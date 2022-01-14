@@ -5,11 +5,9 @@ import useInchDex from "hooks/useInchDex";
 import { Button, Card, Image, Input, InputNumber, Modal } from "antd";
 import Text from "antd/lib/typography/Text";
 import { ArrowDownOutlined } from "@ant-design/icons";
-//import { useTokenPrice } from "react-moralis";
 import useTokenPrice from "hooks/useTokenPrice";
 import { tokenValue } from "helpers/formatters";
 import { getWrappedNative } from "helpers/networks";
-//import { useOneInchQuote } from "react-moralis";
 
 const styles = {
   card: {

@@ -3,7 +3,8 @@ import useChain from "hooks/useChain";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { Menu, Dropdown, Button } from "antd";
 import { DownOutlined } from "@ant-design/icons";
-import { AvaxLogo, PolygonLogo, BSCLogo, ETHLogo, FantomLogo } from "./Logos";
+//import { AvaxLogo, PolygonLogo, BSCLogo, ETHLogo, FantomLogo } from "./Logos";
+import { PolygonLogo, ETHLogo } from "./Logos";
 
 const styles = {
   item: {
@@ -22,75 +23,75 @@ const styles = {
 };
 
 const menuItems = [
-  {
-     key: "0x3",
-     value: "Ropsten Testnet",
-     icon: <ETHLogo />,
-  },
-  {
-    key: "0x4",
-     value: "Rinkeby Testnet",
-     icon: <ETHLogo />,
-   },
-   {
-     key: "0x2a",
-     value: "Kovan Testnet",
-     icon: <ETHLogo />,
-   },
-  {
-     key: "0x5",
-     value: "Goerli Testnet",
-     icon: <ETHLogo />,
-   },
   //{
-  //  key: "0x1",
-  //  value: "Ethereum mainnet",
+  //  key: "0x3",
+  //  value: "Ropsten Testnet",
   //  icon: <ETHLogo />,
   //},
+  //{
+  //  key: "0x4",
+  //  value: "Rinkeby Testnet",
+  //  icon: <ETHLogo />,
+  //},
+  //{
+  //  key: "0x2a",
+  //  value: "Kovan Testnet",
+  //  icon: <ETHLogo />,
+  //},
+  //{
+  //  key: "0x5",
+  //  value: "Goerli Testnet",
+  //  icon: <ETHLogo />,
+  //},
+  {
+    key: "0x1",
+    value: "Ethereum mainnet",
+    icon: <ETHLogo />,
+  },
 
-   {
-     key: "0x61", // 97
-     value: "Binance Smart Chain Testnet",
-     icon: <BSCLogo />,
-   },
-   //{
-   //  key: "0x38", // 56
-   //  value: "Binance mainnet",
-   //  icon: <BSCLogo />,
-   //},
+  //{
+  // key: "0x61", // 97
+  //  value: "Binance Smart Chain Testnet",
+  //  icon: <BSCLogo />,
+  //},
+  //{
+  //  key: "0x38", // 56
+  //  value: "Binance mainnet",
+  //  icon: <BSCLogo />,
+  //},
 
-   {
+  {
     key: "0x13881", // 80001
     value: "Polygon Mumbai testnet",
     icon: <PolygonLogo />,
   },
-   //{
-   //  key: "0x89", // 137
-   //  value: "Polygon mainnet",
-   //  icon: <PolygonLogo />,
-   //},
+  //{
+  //  key: "0x89", // 137
+  //  value: "Polygon mainnet",
+  //  icon: <PolygonLogo />,
+  //},
 
-   {
-     key: "0xa869", // 43113
-     value: "Avalanche Fuji testnet",
-     icon: <AvaxLogo />,
-   },
+  //{
+  //  key: "0xa869", // 43113
+  //  value: "Avalanche Fuji testnet",
+  //  icon: <AvaxLogo />,
+  //},
   //{
   //   key: "0xa86a", // 43114
   //   value: "Avalanche mainnet",
   //   icon: <AvaxLogo />,
   // },
 
-  {
-     key: "0xFA2", // 4002
-     value: "Fantom testnet",
-     icon: <FantomLogo />,
-   },
-   //{
-   //  key: "0xFA", // 250
-   //  value: "Fantom Opera mainnet",
-   //  icon: <FantomLogo />,
-   //},
+  //{
+  //  key: "0xFA2", // 4002
+  //  value: "Fantom testnet",
+  //  icon: <FantomLogo />,
+  //},
+  //{
+  //  key: "0xFA", // 250
+  //  value: "Fantom Opera mainnet",
+  //  icon: <FantomLogo />,
+  //},
 
   // {
   //   key: "0x539",
