@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+//import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { getNativeByChain } from "helpers/networks";
 import { getCollectionsByChain } from "helpers/collections";
 import {
   useMoralis,
   useMoralisQuery,
-  useNewMoralisObject,
+  // useNewMoralisObject,
 } from "react-moralis";
 import { Card, Image, Tooltip, Modal, Badge, Alert, Spin } from "antd";
 import { useNFTTokenIds } from "hooks/useNFTTokenIds";
@@ -306,6 +307,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
                 >
                   <img
                     src={nftToBuy?.image}
+                    alt="NFT to buy"
                     style={{
                       width: "250px",
                       borderRadius: "10px",
@@ -325,6 +327,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
           >
             <img
               src={nftToBuy?.image}
+              alt="NFT to buy."
               style={{
                 width: "250px",
                 margin: "auto",
