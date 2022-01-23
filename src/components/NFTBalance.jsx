@@ -29,7 +29,7 @@ function NFTBalance() {
   const [price, setPrice] = useState(1);
   const [loading, setLoading] = useState(false);
   const contractProcessor = useWeb3ExecuteFunction();
-  const contractABIJson = JSON.parse(contractABI);
+  const contractABIJson = contractABI;
   const listItemFunction = "createMarketItem";
   const ItemImage = Moralis.Object.extend("ItemImages");
 
