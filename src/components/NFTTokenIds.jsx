@@ -66,7 +66,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
   const { chainId, marketAddress, contractABI, walletAddress } =
     useMoralisDapp();
   const nativeName = getNativeByChain(chainId);
-  const contractABIJson = JSON.parse(contractABI);
+  const contractABIJson = contractABI;
   const { Moralis } = useMoralis();
   const queryMarketItems = useMoralisQuery("MarketItems");
   const fetchMarketItems = JSON.parse(
