@@ -10,6 +10,7 @@ import {
 import Account from "components/Account";
 import Chains from "components/Chains";
 import NFTBalance from "components/NFTBalance";
+import NFTMint from "components/NFTMint";
 import NFTTokenIds from "components/NFTTokenIds";
 import { Menu, Layout} from "antd";
 import SearchCollections from "components/SearchCollections";
@@ -18,14 +19,16 @@ import NativeBalance from "components/NativeBalance";
 import "./style.css";
 import Text from "antd/lib/typography/Text";
 import NFTMarketTransactions from "components/NFTMarketTransactions";
+import background from "./static/images/item.jpeg"
 const { Header, Footer } = Layout;
 
 const styles = {
   content: {
-    display: "flex",
+  //  display: "flex",
     justifyContent: "center",
     fontFamily: "Roboto, sans-serif",
     color: "#041836",
+    //background: "#242b3b",
     marginTop: "130px",
     padding: "10px",
   },
@@ -64,7 +67,8 @@ const App = ({ isServerInfo }) => {
   }, [isAuthenticated, isWeb3Enabled]);
 
   return (
-    <Layout style={{ height: "100vh", overflow: "auto" }}>
+    <section style={{backgroundImage: "url(" + background + ")"}}>
+    <Layout class="bg-overlay bg-gradient-primary opacity-6" style={{ height: "100vh", overflow: "auto"}}>
       <Router>
         <Header style={styles.header}>
           <Logo />
@@ -79,16 +83,13 @@ const App = ({ isServerInfo }) => {
               marginLeft: "50px",
               width: "100%",
             }}
-            defaultSelectedKeys={["nftMarket"]}
+            defaultSelectedKeys={["nftMint"]}
           >
-            <Menu.Item key="nftMarket" onClick={() => setInputValue("explore")} >
-              <NavLink to="/NFTMarketPlace">🛒 Explore Market</NavLink>
+            <Menu.Item key="nftMint" onClick={() => setInputValue("explore")}>
+              <NavLink to="/nftMint">Mint</NavLink>
             </Menu.Item>
             <Menu.Item key="nft">
-              <NavLink to="/nftBalance">🖼 Your Collection</NavLink>
-            </Menu.Item>
-            <Menu.Item key="transactions">
-              <NavLink to="/Transactions">📑 Your Transactions</NavLink>
+              <NavLink to="/nftBalance">Your Collection</NavLink>
             </Menu.Item>
           </Menu>
           <div style={styles.headerRight}>
@@ -102,6 +103,9 @@ const App = ({ isServerInfo }) => {
             <Route path="/nftBalance">
               <NFTBalance />
             </Route>
+            <Route path="/nftMint">
+              <NFTMint />
+            </Route>
             <Route path="/NFTMarketPlace">
               <NFTTokenIds inputValue={inputValue} setInputValue={setInputValue}/>
             </Route>
@@ -109,7 +113,7 @@ const App = ({ isServerInfo }) => {
               <NFTMarketTransactions />
             </Route>
           </Switch>
-          <Redirect to="/NFTMarketPlace" />
+          <Redirect to="/NFTMint" />
         </div>
       </Router>
       <Footer style={{ textAlign: "center" }}>
@@ -148,6 +152,7 @@ const App = ({ isServerInfo }) => {
         </Text>
       </Footer>
     </Layout>
+    </section>
   );
 };
 

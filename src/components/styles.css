@@ -1,0 +1,129 @@
+:root {
+    --color-primary: #473bf0;
+    --color-primary-2: #0040e5;
+    --color-primary-3: #e95e6c;
+    --color-primary-4: #3377ff;
+    --color-primary-5: #5580ff;
+    --color-primary-6: #42a66c;
+    --color-secondary: #f4732a;
+    --color-secondary-2: #f6b9a7;
+    --color-secondary-3: #8208fe;
+    --color-secondary-4: #2b354f;
+    --color-secondary-5: #343351;
+    --color-heading: #161c2d;
+    --color-heading-2: #1a1b1e;
+    --color-heading-3: #36234b;
+    --color-heading-4: #1f1f1f;
+    --color-body: #6e727d;
+    --color-body-2: #6f667b;
+    --color-body-3: #7a7a7a;
+    --color-body-4: #656871;
+    --color-dark: #1b202f;
+    --color-dark-2: #16171b;
+    --color-dark-3: #191a1e;
+    --color-dark-4: #282a33;
+    --color-white: #fff;
+    --color-grey: #f5f3f5;
+    --color-soft-grey: #f2f5fe;
+    --color-soft-grey-2: #f4f7fa;
+    --color-offwhite: #e7e8ea;
+    --color-text: #f5f5f5;
+    --color-background-dark: #242b3b;
+    --color-bg-accent: #060B1A;
+}
+
+header {
+  position: "fixed";
+  z-index: 1;
+  width: "100%";
+  display: "flex";
+  justify-content: "space-between";
+  align-items: "center";
+  font-family: "Roboto, sans-serif";
+  border-bottom: "2px solid rgba(0, 0, 0, 0.06)";
+  padding: "0 10px";
+  box-shadow: "0 1px 10px rgb(151 164 175 / 10%)";
+}
+
+
+body {
+    text-align: center;
+    scroll-behavior: smooth;
+}
+
+#app {
+    display: none;
+    margin-top: 10px;
+    height: 800px;
+    background-color: var(--color-bg-accent);
+    padding: 20px;
+    border-radius: 20px;
+    color: var(--color-bg-accent);
+}
+
+.form_element {
+    margin-top: 20px;
+}
+
+
+#success_message {
+    background-color: #c4ffc4;
+    border: 1px solid #0fcf0f;
+    border-radius: 4px;
+    display: none;
+}
+
+.upload-box {
+    height: 200px;
+    width: 100%;
+    border-style: dashed;
+    border-color: whitesmoke;
+    border-radius: 25px;
+}
+
+.preview-box {
+    height: 300px;
+    width: 350px;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    border-style: dashed;
+    border-color: whitesmoke;
+    border-radius: 25px;
+}
+
+.custom-form {	
+    border-bottom: var(--color-grey) ;
+}
+
+
+.inp {
+    border:none;
+    border-bottom: 1px solid var(--color-body);
+    padding: 5px 10px;
+    outline: none;
+   background-color: inherit;
+   width: 100%;
+ }
+
+[placeholder]:focus::-webkit-input-placeholder {
+    transition: text-indent 0.4s 0.4s ease; 
+    text-indent: -100%;
+    opacity: 1;
+ }
+
+ .bg-overlay {
+    
+    background-color: rgba(62, 69, 78, .5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .bg-gradient-primary {
+    background: linear-gradient(to left, #0f0b14 0%, #0e0e31 100%);
+    position: absolute;
+  }

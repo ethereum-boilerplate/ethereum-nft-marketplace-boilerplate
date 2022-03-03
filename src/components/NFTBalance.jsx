@@ -207,7 +207,6 @@ function NFTBalance() {
             </Card>
           ))}
       </div>
-
       <Modal
         title={`List ${nftToSend?.name} #${nftToSend?.token_id} For Sale`}
         visible={visible}
