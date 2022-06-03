@@ -35,7 +35,8 @@ function NFTBalance() {
 
   async function list(nft, listPrice) {
     setLoading(true);
-    const p = listPrice * ("1e" + 18);
+    //const p = listPrice * ("1e" + 18);
+    const p = Moralis.Units.ETH(listPrice);
     const ops = {
       contractAddress: marketAddress,
       functionName: listItemFunction,
