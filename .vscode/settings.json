@@ -1,0 +1,18 @@
+{
+    "cmake.options.statusBarVisibility": "compact",
+    "cmake.options.advanced": {
+        "build": {
+            "statusBarVisibility": "visible"
+        },
+        "launch": {
+            "statusBarVisibility": "visible"
+        },
+        "debug": {
+            "statusBarVisibility": "visible"
+        }
+    },
+    "github-enterprise.uri": "github-enterprise.uri",
+    "githubIssues.createInsertFormat": "url",
+    "remote.SSH.remoteServerListenOnSocket": true,
+    "remoteHub.gitProtocol": "ssh"
+}
